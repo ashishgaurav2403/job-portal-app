@@ -98,3 +98,20 @@ button{
   color: white !important;
   border-radius: 5px !important;
 }
+
+.login{
+  /* background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%); */
+  height: 100vh !important;
+  padding-top: 150px;
+}
+/* .login-form{
+ background-color: white !important;
+} */
+
+.register{
+  background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%);
+  height: 100vh !important;
+}
+.register-form{
+  background-color: white !important;
+}
