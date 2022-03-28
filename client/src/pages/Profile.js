@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import DefaultLayout from "../components/DefaultLayout";
 import { Row, Col, Form, Tabs, Input, Button } from "antd";
 import {useDispatch} from 'react-redux'
-//import { updateUser } from "../redux/actions/userActions";
+import { updateUser } from "../redux/actions/userActions";
 const { TextArea } = Input;
 const { TabPane } = Tabs;
 function Profile() {
   const [personalInfo, setPersonalInfo] = useState();
   const [activeTab, setActiveTab] = useState("1");
-  //const dispatch = useDispatch()
+  const dispatch = useDispatch()
   function onPersonInfoSubmit(values) {
     setPersonalInfo(values);
     console.log(values);
@@ -16,15 +16,25 @@ function Profile() {
   }
 
  
+  function onFinalFinish(values){
 
-//  const user = JSON.parse(localStorage.getItem('user'))
+    const finalObj = {...personalInfo , ...values}
+
+    console.log(finalObj)
+
+    dispatch(updateUser(finalObj))
+
+}
+
+
+  const user = JSON.parse(localStorage.getItem('user'))
 
   return (
     <div>
       <DefaultLayout>
         <Tabs defaultActiveKey="1" activeKey={activeTab}>
           <TabPane tab="Personal Info" key="1">
-            <Form layout="vertical" onFinish={onPersonInfoSubmit} >
+            <Form layout="vertical" onFinish={onPersonInfoSubmit} initialValues={user} >
               <Row gutter={16}>
                 <Col lg={8} sm={24}>
                   <Form.Item
@@ -101,7 +111,7 @@ function Profile() {
             </Form>
           </TabPane>
           <TabPane tab="Skills and Education" key="2">
-            {/* <Form initialValues={user} layout="vertical" onFinish={onFinalFinish}>
+            <Form initialValues={user} layout="vertical" onFinish={onFinalFinish}>
               <Row>
                 <Col lg={24} sm={24}>
                   <Form.List name="education">
@@ -200,8 +210,8 @@ function Profile() {
               </Row>
               <Button onClick={()=>{setActiveTab("1")}}>Previous</Button>
               <Button htmlType="submit">Update</Button>
-            </Form> */}
-            Content of the Tab Pane 2
+            </Form> 
+    
           </TabPane>
         </Tabs>
       </DefaultLayout>
