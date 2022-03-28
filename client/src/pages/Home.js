@@ -36,7 +36,7 @@ function Home() {
                         {/* <Link><Button>View</Button></Link> 
                        <p>Posted on : {moment(job.createdAt).format('MMM DD yyyy')}</p> */}
                        
-                       <Link to = "/"><Button>View</Button></Link>
+                       <Link to={`/jobs/${job._id}`}><Button>View</Button></Link>
                        <p>Posted on :{moment(job.createdAt).format('MMM DD yyyy')}</p>
                    </div>
                   
