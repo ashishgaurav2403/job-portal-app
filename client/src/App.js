@@ -13,10 +13,18 @@ import JobInfo from "./pages/JobInfo";
 import AppliedJobs from "./pages/AppliedJobs";
 import Profile from "./pages/Profile";
 import PostJob from "./pages/PostJob";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllJobs } from "./redux/actions/jobActions";
+import { useEffect } from "react";
 
 function App() {
   const { loader } = useSelector((state) => state.loaderReducer);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getAllJobs());
+  //  dispatch(getAllUsers())
+  }, []);
+
 
   return (
     <div className="App">
@@ -30,7 +38,8 @@ function App() {
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route exact path="/appliedjobs" element={<AppliedJobs />} />
-          <Route exact path="/jobinfo" element={<JobInfo />} />
+          <Route exact path="/jobs/:id" element={<JobInfo />} />
+          {/* <Route exact path="/jobs/:id" component={JobInfo} /> */}
           <Route exact path="/postjob" element={<PostJob />} />
           <Route exact path="/profile" element={<Profile />} />
         </Routes>

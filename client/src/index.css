@@ -91,3 +91,10 @@ p{
 .job-div{
   border-radius: 15px !important;
 }
+
+
+button{
+  background-color: #001529 !important;
+  color: white !important;
+  border-radius: 5px !important;
+}
