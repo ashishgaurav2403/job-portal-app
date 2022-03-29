@@ -19,7 +19,8 @@ import { getAllJobs } from "./redux/actions/jobActions";
 import { useEffect } from "react";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-
+import PostedJobs from "./pages/PostedJobs";
+import EditJob from "./pages/EditJob";
 function App() {
   const { loader } = useSelector((state) => state.loaderReducer);
   const dispatch = useDispatch();
@@ -47,6 +48,8 @@ function App() {
           <Route exact path="/profile" element={<Profile />} />
           <Route path="/login" element={<Login/>} />
           <Route path="/register" element={<Register/>} />
+          <Route path="/posted" element={<PostedJobs/>} />
+          <Route exact path="/editjob/:id" element={<EditJob />} />
         </Routes>
       </BrowserRouter>
     </div>
