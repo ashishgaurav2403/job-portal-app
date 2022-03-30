@@ -2,7 +2,7 @@ import React from 'react'
 import { Row, Col, Form, Input, Button, message } from "antd";
 import { useDispatch } from 'react-redux';
 import { registerUser } from '../redux/actions/userActions';
-
+import { Link } from 'react-router-dom';
 function Register() {
 const dispatch = useDispatch()
     function register(values){
@@ -52,6 +52,7 @@ const dispatch = useDispatch()
             </Form.Item>
 
             <Button htmlType="submit" className='mb-3'>Register</Button><br />
+            <Link to='/login' className='mt-3'>Already registered ? Click here to login</Link>
 
            
           </Form>

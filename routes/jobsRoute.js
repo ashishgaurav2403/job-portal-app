@@ -1,6 +1,10 @@
 const express = require("express");
 const router = express.Router();
 const Job = require("../models/jobModel")
+const User = require("../models/userModel");
+//import moment from "moment";
+
+
 
 router.get("/getalljobs", async(req, res) => {
   
@@ -39,6 +43,12 @@ router.post("/editjob", async(req, res) => {
     }
    
  });
+
+
+
+
+
+ 
 
 
 

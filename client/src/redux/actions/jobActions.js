@@ -1,5 +1,9 @@
 import axios from "axios";
 import { message } from "antd";
+
+
+
+
  export const getAllJobs = () => async (dispatch) => {
   
   dispatch({ type: "LOADING", payload: true });
@@ -55,4 +59,8 @@ import { message } from "antd";
       dispatch({ type: "LOADING", payload: false });
     }
   };
+  
+
+
+
   

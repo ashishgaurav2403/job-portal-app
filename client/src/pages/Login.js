@@ -41,7 +41,7 @@ function Login() {
 
             <Button htmlType="submit" className='mb-3'>Login</Button><br />
 
-            {/* <Link to='/register' className='mt-3'>Not registerd ? , Click here to register</Link> */}
+            <Link to='/register' className='mt-3'>Not registerd ? Click here to register</Link>
           </Form>
         </Col>
         {/* <Col lg={5}><h1 className='heading2' data-aos='slide-right'>Jobs</h1></Col> */}

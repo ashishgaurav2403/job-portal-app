@@ -3,8 +3,10 @@ import moment from "moment";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import DefaultLayout from "../components/DefaultLayout";
-import { Button } from "antd";
+import { Button, Tag} from "antd";
 import { Link } from "react-router-dom";
+import { applyJob } from "../redux/actions/jobActions";
+
 
 function JobInfo({ match }) {
   let { id } = useParams();
@@ -13,6 +15,19 @@ function JobInfo({ match }) {
   const job = jobs.find((job) => job._id == id);
 
   const userid = JSON.parse(localStorage.getItem("user"))._id;
+
+  //const appliedCandidates = job.appliedCandidates;
+
+  //const alreadyApplied = appliedCandidates.find(
+  //  (candidate) => candidate.userid == userid
+  //);
+
+
+  //const dispatch = useDispatch();
+
+  //function applyNow() {
+  //  dispatch(applyJob(job));
+  //}
 
   return (
     <div>
@@ -67,8 +82,9 @@ function JobInfo({ match }) {
                 <Button>
                   <Link to={`/editjob/${job._id}`}>Edit Now</Link>
                 </Button>
-              )  : (
-                <Button>Apply Now</Button>
+               ) :  (
+                
+                <Button >Apply Now</Button>
               )}
 
               <p>
