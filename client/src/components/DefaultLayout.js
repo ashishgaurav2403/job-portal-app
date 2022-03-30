@@ -28,6 +28,13 @@ constructor(){
     });
   };
 
+ logout=()=>{
+  localStorage.removeItem('user')
+ window.location.reload()
+  //localStorage.clear();
+   }
+
+
   render() {
     return (
       <Layout>
@@ -53,7 +60,8 @@ constructor(){
             <Link to = '/posted'>Posted</Link>
             </Menu.Item>
             <Menu.Item key="/logout" icon={<UploadOutlined />}>
-            <Link to = '/login'>Logout</Link>
+            <Link to='/' onClick={this.logout}>Logout</Link>
+            {/* <Link to = '/login'>Logout</Link> */}
             </Menu.Item>
           </Menu>
         </Sider>
