@@ -16,18 +16,18 @@ function JobInfo({ match }) {
 
   const userid = JSON.parse(localStorage.getItem("user"))._id;
 
-  //const appliedCandidates = job.appliedCandidates;
+  const appliedCandidates = job.appliedCandidates;
 
-  //const alreadyApplied = appliedCandidates.find(
-  //  (candidate) => candidate.userid == userid
-  //);
+  const alreadyApplied = appliedCandidates.find(
+    (candidate) => candidate.userid == userid
+  );
 
 
-  //const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-  //function applyNow() {
-  //  dispatch(applyJob(job));
-  //}
+  function applyNow() {
+    dispatch(applyJob(job));
+  }
 
   return (
     <div>
@@ -82,9 +82,11 @@ function JobInfo({ match }) {
                 <Button>
                   <Link to={`/editjob/${job._id}`}>Edit Now</Link>
                 </Button>
-               ) :  (
-                
-                <Button >Apply Now</Button>
+              
+              ) : alreadyApplied ? (
+                <Tag color="green">Already Applied</Tag>
+              ) : (
+                <Button onClick={applyNow}>Apply Now</Button>
               )}
 
               <p>
