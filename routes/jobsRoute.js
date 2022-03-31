@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Job = require("../models/jobModel")
 const User = require("../models/userModel");
-//import moment from "moment";
+const moment = require("moment");
 
 
 
@@ -48,7 +48,58 @@ router.post("/editjob", async(req, res) => {
 
 
 
+ router.post("/applyjob", async(req, res) => {
+
+    const {user , job} = req.body
+
+    try {
+
+        const jobDetails = await Job.findOne({_id : job._id})
+
+        const appliedCandidate = {
+            userid : user._id ,
+            appliedDate : moment().format('MMM DD yyyy')
+        }
+
+        jobDetails.appliedCandidates.push(appliedCandidate)
+
+        await jobDetails.save()
+
+        const userDetails = await User.findOne({_id : user._id})
+
+        const appliedJob = {
+            jobid : job._id ,
+            appliedDate : moment().format('MMM DD yyyy')
+        }
+
+        userDetails.appliedJobs.push(appliedJob)
+
+        await userDetails.save()
+
+
+        res.send('Job Applied Successfully')
+
+
+        
+    } catch (error) {
+
+        res.send(error)
+        
+    }
+  
+});
  
+
+
+
+
+
+
+
+
+
+
+
 
 
 

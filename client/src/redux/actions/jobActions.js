@@ -59,6 +59,29 @@ import { message } from "antd";
       dispatch({ type: "LOADING", payload: false });
     }
   };
+
+
+
+
+  export const applyJob = (job) => async (dispatch) => {
+
+    const user = JSON.parse(localStorage.getItem("user"))
+
+    dispatch({ type: "LOADING", payload: true });
+    try {
+      const response = await axios.post("/api/jobs/applyjob",  {job , user});
+  
+      dispatch({ type: "LOADING", payload: false });
+      message.success("Job Applied Successfully");
+  
+      setTimeout(() => {
+        window.location.href = "/";
+      }, 1000);
+    } catch (error) {
+      console.log(error);
+      dispatch({ type: "LOADING", payload: false });
+    }
+  };
   
 
 
