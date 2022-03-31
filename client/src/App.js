@@ -22,7 +22,9 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import PostedJobs from "./pages/PostedJobs";
 import EditJob from "./pages/EditJob";
+import UserInfo from "./pages/UserInfo";
 
+import { getAllUsers } from "./redux/actions/userActions";
 
 
 function App() {
@@ -30,7 +32,7 @@ function App() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getAllJobs());
-    //  dispatch(getAllUsers())
+      dispatch(getAllUsers())
   }, []);
 
   return (
@@ -121,6 +123,15 @@ function App() {
           element={
             <PrivateRoute>
               <EditJob />
+            </PrivateRoute>
+          }
+        />
+
+<Route
+          path="/users/:id"
+          element={
+            <PrivateRoute>
+              <UserInfo />
             </PrivateRoute>
           }
         />

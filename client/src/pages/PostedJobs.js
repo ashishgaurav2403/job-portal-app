@@ -3,6 +3,7 @@ import DefaultLayout from "../components/DefaultLayout";
 import { useSelector, useDispatch } from "react-redux";
 import { Table, Modal } from "antd";
 import moment from "moment";
+import { Link, useHistory } from "react-router-dom";
 
 import {
     MenuUnfoldOutlined,
@@ -17,9 +18,12 @@ import {
 import { useNavigate } from "react-router-dom";
 function PostedJobs() {
   const alljobs = useSelector((state) => state.jobsReducer).jobs;
+  const allusers = useSelector((state) => state.usersReducer).users;
   const userid = JSON.parse(localStorage.getItem("user"))._id;
   const userPostedJobs = alljobs.filter((job) => job.postedBy == userid);
   const history = useNavigate();
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [selectedJob, setSelectedJob] = useState();
 
   const columns = [
     {
@@ -51,6 +55,14 @@ function PostedJobs() {
                
                 }}
               />
+
+<OrderedListOutlined
+               style={{fontSize:20}}
+              onClick={() => {
+                
+                showModal(job);
+              }}
+            />
     
             </div>
           );
@@ -71,7 +83,67 @@ function PostedJobs() {
     dataSource.push(obj);
   }
 
+
+  const showModal = (job) => {
+    setIsModalVisible(true);
+    setSelectedJob(job);
+  };
+
+  const handleOk = () => {
+    setIsModalVisible(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
  
+
+
+
+  function CandidatesList(){
+    const candidatesColumns = [
+      {
+        title: "Candidate Id",
+        dataIndex: "candidateId",
+        render : (text ,data)=>{
+         return <Link to={`/users/${data.candidateId}`}>{data.candidateId}</Link>
+        }
+      },
+      {
+        title: "Full Name",
+        dataIndex: "fullName",
+      },
+      { title: "Applied Date", dataIndex: "appliedDate" },
+    ];
+  
+    var candidatesDatasource = [];
+  
+    for (var candidate of selectedJob.appliedCandidates) {
+      var user = allusers.find((user) => user._id == candidate.userid);
+  
+      var obj = {
+        candidateId: user._id,
+        fullName: user.firstName + " " + user.lastName,
+        appliedDate: candidate.appliedDate,
+      };
+  
+      candidatesDatasource.push(obj);
+    }
+  
+    return <Table
+    columns={candidatesColumns}
+    dataSource={candidatesDatasource}
+  />
+   }
+  
+
+
+
+
+
+
+
+
   console.log(userPostedJobs);
   return (
     <div>
@@ -79,6 +151,19 @@ function PostedJobs() {
         <h1>Posted Jobs</h1>
 
         <Table columns={columns} dataSource={dataSource} />
+
+
+
+        <Modal
+          title="Applied Candidates List"
+          visible={isModalVisible}
+          closable={false}
+          onOk={handleOk}
+          onCancel={handleCancel}
+          width={800}
+        >
+          <CandidatesList/> 
+        </Modal>
 
        
       </DefaultLayout>
