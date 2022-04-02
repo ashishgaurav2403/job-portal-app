@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
-
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -8,13 +7,15 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-family: 'Montserrat', sans-serif !important;
-}
 
+}
+html , body{
+  overflow-x: hidden !important;
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-
 
 
 #components-layout-demo-custom-trigger .trigger {
@@ -42,33 +43,31 @@ code {
 .ant-layout-sider{
   height: 100vh !important;
 }
-
 .ant-layout-header span svg{
   height: 25px !important;
   width: 25px !important;
   margin-left: 10px !important;
 }
-
 .logo{
-  text-align: center !important; 
+  
+  text-align: center;
   font-size: 30px !important;
 }
-
 .logo h1{
   color: white !important;
 }
-
 .ant-layout-content{
   margin: 0 !important;
   padding: 10px !important; 
 }
 
 .sweet-loading{
-  position: fixed !important;
-  top : 30% !important;
-  height: 100% !important;
-  width: 100% !important;
-  z-index: 9999;
+
+    position: fixed !important;
+    top : 30% !important;
+    height: 100% !important;
+    width: 100% !important;
+    z-index: 9999;
 
 }
 
@@ -83,30 +82,40 @@ p{
   padding : 2px !important;
   font-size: 16px !important;
 }
-
 .bs{
   box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
 }
-
 .job-div{
   border-radius: 15px !important;
 }
-
 
 button{
   background-color: #001529 !important;
   color: white !important;
   border-radius: 5px !important;
 }
+.login , .register{
+  padding-top: 150px ;
+}
+input , textarea{
+  border: 1px solid #001529 !important;
+  box-shadow: none !important;
+}
+
+.ant-message{
+  z-index: 9999 !important;
+}
+.ant-btn{
+  height: 33px !important;
+}
 
 .login{
-  /* background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%); */
+  background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%);
   height: 100vh !important;
-  padding-top: 150px;
 }
-/* .login-form{
- background-color: white !important;
-} */
+.login-form{
+  background-color: white !important;
+}
 
 .register{
   background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%);
@@ -115,13 +124,6 @@ button{
 .register-form{
   background-color: white !important;
 }
-
-input , textarea{
-  border: 1px solid #001529 !important;
-  box-shadow: none !important;
-}
-
-
 
 .heading1 , .heading2{
    font-size: 100px !important;
@@ -146,11 +148,4 @@ input , textarea{
 }
 h1{
   font-size: 35px !important;
-}
-
-.ant-message{
-  z-index: 9999 !important;
-}
-.ant-btn{
-  height: 33px !important;
 }
